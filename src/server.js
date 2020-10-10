@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes')
+const path = require("path");
+
 const PORT = process.env.PORT || 8000;
 
 if(process.env.NODE_ENV !== 'production') {
@@ -22,6 +24,8 @@ try {
 	console.log('error')
 }
 
+
+app.use("/files", express.static(path.resolve(__dirname, "..", "files")))
 app.use(routes);
 
 app.listen(PORT, ()=>{
