@@ -46,8 +46,8 @@ routes.delete('/event/:eventId', EventController.delete)
 
 //Dashboard
 routes.get('/event/:eventId', DashboardController.getEventById)
+routes.get('/dashboard/:sport', DashboardController.getAllEvents)
 routes.get('/dashboard', DashboardController.getAllEvents)
-routes.get('/dashboard/:sport', DashboardController.getAllEventsbyType)
 
 
 module.exports = routes;

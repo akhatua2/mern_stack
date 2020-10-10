@@ -17,31 +17,17 @@ module.exports = {
     },
 
     async getAllEvents(req, res) {
+        const { sport } = req.params;
+        const query = sport ? { sport } : {}
 
         try {
-            const event = await Event.find({});
-            return res.json(event)
+            const events = await Event.find(query)
 
-        } catch(error) {
-            return res.status(400).json({
-                message: 'No events yet!'
-            })
-        }
-    },
-
-    async getAllEventsbyType(req, res) {
-        const {sport} = req.params;
-        const query = {sport} || {}
-
-        try {
-            const event = await Event.find(query)
-            if(event) {
-                return res.json(event)
+            if (events) {
+                return res.json(events)
             }
-        } catch(error) {
-            return res.status(400).json({
-                message: 'No events yet!'
-            })
+        } catch (error) {
+            return res.status(400).json({ message: 'We do have any events yet' })
         }
-    },
+    }
 }
