@@ -17,7 +17,12 @@ module.exports = {
                     email
                 });  
 
-                return res.json(user)
+                return res.json({
+                    _id: user.id,
+                    email: user.email,
+                    firstName: user.firstName,
+                    lastName: user.lastName
+                })
             }
 
             return res.status(400).json({

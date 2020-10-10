@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
+import Routes from './routes'
+import {Container} from 'reactstrap'
 
 function App() {
   return (
-    <div className="App">
-
-          Learning the MERN stack
-
-    </div>
+    <Container>
+      <h1> Sport's App </h1>
+      <Routes/>
+    </Container>
   );
 }
 
