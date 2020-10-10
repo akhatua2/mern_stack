@@ -41,6 +41,18 @@ module.exports = {
                 message: 'User ID does not exist. Do you want to register instead?'
             })
         }
+    },
+
+    async getAllUsers(req, res) {
+        try{
+            const user = await User.find({});
+            return res.json(user)
+
+        } catch(error) {
+            return res.status(400).json({
+                message: 'No user exists!'
+            })
+        }
     }
     
     

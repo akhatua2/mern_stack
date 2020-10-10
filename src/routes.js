@@ -20,9 +20,17 @@ routes.get('/register', (req, res)=>{
 //User
 routes.post('/user/register', UserController.createUser)
 routes.get('/user/:userId', UserController.getUserById)
+routes.get('/user', UserController.getAllUsers)
+
 
 //Event
 routes.post('/event', uploader.single("thumbnail"), EventController.createEvent)
-routes.get("/event/:eventId", EventController.getEventById)
+routes.get('/event/:eventId', EventController.getEventById)
+routes.get('/events', EventController.getAllEvents)
+routes.get('/events/:sport', EventController.getEventByType)
+routes.delete('/event/:eventId', EventController.delete)
+
+
+
 
 module.exports = routes;
