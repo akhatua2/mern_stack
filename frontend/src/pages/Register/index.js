@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import api from '../../services/api'
-import { Container, Button, Form, FormGroup, Input } from 'reactstrap';
+import { Container, Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 
 export default function Register({history}) {
@@ -34,20 +34,31 @@ export default function Register({history}) {
             <Form onSubmit = {handleSubmit}>
 
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <Label>First Name: </Label>
                     <Input type="text" name="firstName" id="firstName" placeholder="Your first name" onChange={evt => setFirstName(evt.target.value)}/>
                 </FormGroup>
+                <br/>
+
 
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <Label>Last Name: </Label>
                     <Input type="text" name="lastName" id="lastName" placeholder="Your last name" onChange={evt => setLastName(evt.target.value)}/>
-                </FormGroup>
+                </FormGroup>                
+                <br/>
+
 
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <Label>Email Address: </Label>
                     <Input type="email" name="email" id="exampleEmail" placeholder="Your email" onChange={evt => setEmail(evt.target.value)}/>
                 </FormGroup>
+                <br/>
+
 
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <Label>Passwoard: </Label>
                     <Input type="password" name="password" id="examplePassword" placeholder="Your password" onChange={evt => setPassword(evt.target.value)}/>
                 </FormGroup>
+                <br/>
 
                 <Button>Submit</Button>
             </Form>

@@ -6,8 +6,10 @@ import {Container} from 'reactstrap'
 function App() {
   return (
     <Container>
-      <h1> Sport's App </h1>
-      <Routes/>
+      <h1> AI PERSONAL TRAINER </h1>
+      <div className='content'>
+        <Routes/>
+      </div>
     </Container>
   );
 }
