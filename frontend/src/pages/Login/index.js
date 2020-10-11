@@ -6,7 +6,7 @@ import "./login.css";
 export default function Login({history}) {
     const [ email, setEmail] = useState("")
     const [ password, setPassword] = useState("")
-    const [error, setError] = useState(false)
+    const [errors, setError] = useState(false)
     const [errorMessage, setErrorMessage] = useState(false)
 
 
@@ -28,11 +28,12 @@ export default function Login({history}) {
                     setErrorMessage(false)
                     setErrorMessage("")
                 }, 2000)
-                console.log(message)
+                console.log(errors)
             }
             
         } catch (error) {
-            
+            Promise.reject(error);
+            console.log(error);
         }
     }
 
@@ -41,23 +42,25 @@ export default function Login({history}) {
             <h2> Login </h2>
             <p> Please <strong>login</strong> to access your account!</p>
             <Form onSubmit = {handleSubmit}>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup className="textField">
                     <Label>Email Address: </Label>
                     <Input type="email" name="email" id="exampleEmail" placeholder="Your email" onChange={evt => setEmail(evt.target.value)}/>
                 </FormGroup>
-                <br/>
 
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+
+                <FormGroup className="textField">
                     <Label>Password: </Label>
                     <Input type="password" name="password" id="examplePassword" placeholder="Your password" onChange={evt => setPassword(evt.target.value)}/>
                 </FormGroup>
-                <br/>
+  
+                <Button className='submit-btn'>Submit</Button>
+
                 <FormGroup>
-                    <Button>Submit</Button>
+                    <Button className='secondary-btn' onClick={() => history.push("/register")}>Register</Button>
                 </FormGroup>
 
                 {errorMessage ? (
-                    <Alert className="event-validation" color="danger">  </Alert>
+                    <Alert className="event-validation" color="danger"> {errorMessage} </Alert>
                 ) : ""}
             </Form>
         </Container>

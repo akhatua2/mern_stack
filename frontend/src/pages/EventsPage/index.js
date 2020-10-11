@@ -92,7 +92,7 @@ export default function EventsPage() {
                     <Label>Event date: </Label>
                     <Input id="date" type="date" value={date} placeholder={'Event Date'} onChange={(evt) => setDate(evt.target.value)} />
                 </FormGroup>
-                <Button type="submit">
+                <Button type="submit" className='submit-btn'>
                     Create Event
                 </Button>
             </Form>
