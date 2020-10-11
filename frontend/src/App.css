@@ -49,6 +49,7 @@ button {
     background: #ffffff;
     margin-top: 6%;
     border-radius: 4px;
+    padding: 40px;
 }
 
 .content > p {
@@ -95,3 +96,7 @@ button {
     background: #00ac39;
     opacity: 1;
 } 
+
+.content ul.events-list {
+    text-align: left;
+}
