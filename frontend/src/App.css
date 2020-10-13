@@ -66,10 +66,10 @@ button {
     padding: 0 20px;
     font-size: 16px;
     font-weight: 700;
-    background: #ff0055;
+    background: #01b686;
     color: #ffffff;
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .content button.submit-btn:hover {
@@ -85,7 +85,7 @@ button {
     padding: 0 20px;
     font-size: 16px;
     font-weight: 700;
-    background: #337ab7;
+    background: #e90d8d;
     color: #ffffff;
     cursor: pointer;
     opacity: 0.8;
@@ -93,7 +93,7 @@ button {
 }
 
 .content button.secondary-btn:hover {
-    background: #00ac39;
+    background:  #ff0055;
     opacity: 1;
 } 
 

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import api from '../../services/api';
-import { Container, Button, Form, FormGroup, Input, Label, Alert } from 'reactstrap';
+import { Container, Button, Form, FormGroup, Input, Label, Alert, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import cameraIcon from '../../assets/camera.png'
 import "./events.css";
 
@@ -9,10 +9,12 @@ export default function EventsPage({history}) {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [thumbnail, setThumbnail] = useState(null)
-    const [sport, setSport] = useState('')
+    const [sport, setSport] = useState('Sport')
     const [date, setDate] = useState('')
     const [errorMessage, setErrorMessage] = useState(false)
     const [successMessage, setSuccessMessage] = useState(false)
+    const [dropdownOpen, setOpen] = useState(false);
+    const toggle = () => setOpen(!dropdownOpen);
 
 
     const preview = useMemo(() => {
@@ -27,6 +29,8 @@ export default function EventsPage({history}) {
         const user_id = localStorage.getItem('user');
 
         const eventData = new FormData();
+        
+
 
         eventData.append("thumbnail", thumbnail)
         eventData.append("sport", sport)
@@ -40,7 +44,7 @@ export default function EventsPage({history}) {
             if (title !== "" &&
                 description !== "" &&
                 price !== "" &&
-                sport !== "" &&
+                sport !== "Sport" &&
                 date !== "" &&
                 thumbnail !== null
             ) {
@@ -49,7 +53,8 @@ export default function EventsPage({history}) {
                 setSuccessMessage(true)
                 setTimeout(() => {
                     setSuccessMessage(false)
-                }, 9000)
+                    history.push("/")
+                }, 2000)
 
             } else {
                 setErrorMessage(true)
@@ -63,6 +68,7 @@ export default function EventsPage({history}) {
         }
     }
 
+    const sportsEventHandler = (sport) => setSport(sport)
 
     return (
         <Container>
@@ -76,9 +82,7 @@ export default function EventsPage({history}) {
                     </Label>
                 </FormGroup>
                 <FormGroup>
-                    <Label>Sport: </Label>
-                    <Input id="sport" type="text" value={sport} placeholder={'Sport name'} onChange={(evt) => setSport(evt.target.value)} />
-                </FormGroup>
+                
                 <FormGroup>
                     <Label>Title: </Label>
                     <Input id="title" type="text" value={title} placeholder={'Event Title'} onChange={(evt) => setTitle(evt.target.value)} />
@@ -95,11 +99,22 @@ export default function EventsPage({history}) {
                     <Label>Event date: </Label>
                     <Input id="date" type="date" value={date} placeholder={'Event Date'} onChange={(evt) => setDate(evt.target.value)} />
                 </FormGroup>
+                <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                        <DropdownToggle caret color="info" value={sport}> {sport} </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem onClick={() => sportsEventHandler('Running')}>Running</DropdownItem>
+                                <DropdownItem onClick={() => sportsEventHandler('Swimming')}> Swimming</DropdownItem>
+                                <DropdownItem onClick={() => sportsEventHandler('Cycling')}>Cycling</DropdownItem>
+                                <DropdownItem onClick={() => sportsEventHandler('Swimming')}>Swimming</DropdownItem>
+                                <DropdownItem onClick={() => sportsEventHandler('Hiking')}>Hiking</DropdownItem>
+                            </DropdownMenu>
+                    </ButtonDropdown>
+                </FormGroup>
                 <Button type="submit" className='submit-btn'>
                     Create Event
                 </Button>
                 <Button className='secondary-btn' onClick={() => history.push("/")}>
-                    Dashboard
+                    Cancel
                 </Button>
             </Form>
 
