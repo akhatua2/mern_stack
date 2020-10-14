@@ -48,7 +48,7 @@ routes.delete('/event/:eventId', EventController.delete)
 routes.get('/event/:eventId', DashboardController.getEventById)
 routes.get('/dashboard/:sport', DashboardController.getAllEvents)
 routes.get('/dashboard', DashboardController.getAllEvents)
-routes.get('/user/events', DashboardController.getEventsByUserId)
+routes.get('/user/events/:user_id', DashboardController.getEventsByUserId)
 
 
 

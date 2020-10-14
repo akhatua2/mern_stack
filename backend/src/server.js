@@ -7,6 +7,21 @@ const path = require("path");
 
 const PORT = process.env.PORT || 8000;
 
+
+
+// Add JWT Token
+
+//Return token when login
+
+// Send token on request
+
+// Add function to router
+
+//Modify response to decode token
+
+
+
+
 if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }

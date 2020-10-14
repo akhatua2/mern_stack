@@ -32,7 +32,7 @@ module.exports = {
     },
 
     async getEventsByUserId(req, res) {
-        const { user_id } = req.headers;
+        const { user_id } = req.params;
 
         try {
             const events = await Event.find({user : user_id})

@@ -55,3 +55,9 @@ button.sub {
     display: flex;
     justify-content: space-between;
 }
+
+ul.events-list header div{
+    display: flex;
+    flex-direction: row;
+
+}
