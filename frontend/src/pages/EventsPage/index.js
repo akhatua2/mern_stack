@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import api from '../../services/api';
 import { Container, Button, Form, FormGroup, Input, Label, Alert, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import cameraIcon from '../../assets/camera.png'
@@ -15,6 +15,13 @@ export default function EventsPage({history}) {
     const [successMessage, setSuccessMessage] = useState(false)
     const [dropdownOpen, setOpen] = useState(false);
     const toggle = () => setOpen(!dropdownOpen);
+    const user = localStorage.getItem('user');
+
+    useEffect(() => {
+        if(!user) {
+            history.push("/login")
+        }
+    }, [])
 
 
     const preview = useMemo(() => {
@@ -26,7 +33,6 @@ export default function EventsPage({history}) {
 
     const submitHandler = async (evt) => {
         evt.preventDefault()
-        const user = localStorage.getItem('user');
 
         const eventData = new FormData();
         

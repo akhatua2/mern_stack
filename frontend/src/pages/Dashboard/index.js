@@ -15,8 +15,13 @@ export default function Dashboard({history}) {
     const [successMessage, setSuccessMessage] = useState(false)
 
     useEffect(()=> {
-        getEvents()
+        if(!user) {
+            history.push("/login")
+        } else {
+            getEvents()
+        }
     }, [])
+
 
     const getEvents = async (filter) => {
         try {

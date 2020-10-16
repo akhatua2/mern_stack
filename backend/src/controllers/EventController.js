@@ -1,5 +1,6 @@
 const Event = require('../models/Event')
 const User = require('../models/User')
+const jwt = require('jsonwebtoken')
 
 
 module.exports = {
@@ -11,9 +12,8 @@ module.exports = {
                 res.sendStatus(401);
 
             } else {
-                const { user_id } = req.headers;
                 const { filename } = req.file;
-                const user = await User.findById(user_id)
+                const user = await User.findById(authData.user._id)
         
                 if(!user) {
                     return res.status(400).json({
@@ -25,7 +25,7 @@ module.exports = {
                     title,
                     description,
                     price: parseFloat(price),
-                    user: user_id,
+                    user: authData.user._id,
                     thumbnail: filename,
                     sport,
                     date
