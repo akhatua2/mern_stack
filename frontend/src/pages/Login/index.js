@@ -42,6 +42,7 @@ export default function Login({history}) {
 
     return(
         <Container>
+            
             <h2> Login </h2>
             <p> Please <strong>login</strong> to access your account!</p>
             <Form onSubmit = {handleSubmit}>
@@ -56,7 +57,7 @@ export default function Login({history}) {
                     <Input type="password" name="password" id="examplePassword" placeholder="Your password" onChange={evt => setPassword(evt.target.value)}/>
                 </FormGroup>
   
-                <Button className='submit-btn'>Submit</Button>
+                <Button className='submit-btn'>Login</Button>
 
                 <FormGroup>
                     <Button className='secondary-btn' onClick={() => history.push("/register")}>Register</Button>
@@ -66,6 +67,7 @@ export default function Login({history}) {
                     <Alert className="event-validation" color="danger"> {errorMessage} </Alert>
                 ) : ""}
             </Form>
+   
         </Container>
     )
 }

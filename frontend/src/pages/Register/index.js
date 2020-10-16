@@ -18,9 +18,10 @@ export default function Register({history}) {
         
         try {
             if(email !== "" && password !== "" && firstName !== "" && lastName !== "") {
-                const response = await api.post('user/register', {email, password, firstName, lastName})
+                const response = await api.post('/user/register', {email, password, firstName, lastName})
                 const user = response.data.user || false;
-                if(user) {
+                const user_id = response.data.user_id || false;
+                if(user && user_id) {
                     history.push('/login')
                 } else {
                     const {message} = response.data
@@ -36,7 +37,7 @@ export default function Register({history}) {
             } else {
 
                 setError(true)
-                        setErrorMessage("Fill all imputs")
+                        setErrorMessage("Please fill out all the details")
                         setTimeout(() => {
                             setErrorMessage(false)
                             setErrorMessage("")

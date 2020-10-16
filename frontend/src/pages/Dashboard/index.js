@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import api from '../../services/api'
-import { Container, Button, Form, FormGroup, Input, Label, Alert, ButtonGroup } from 'reactstrap';
+import { Button, Alert} from 'reactstrap';
 import moment from 'moment';
 import './dashboard.css'
 
@@ -19,9 +19,14 @@ export default function Dashboard({history}) {
     }, [])
 
     const getEvents = async (filter) => {
-        const url = filter ? `/dashboard/${filter}` : '/dashboard'
-        const response = await api.get(url,{headers: {user}})
-        setEvents(response.data)
+        try {
+            const url = filter ? `/dashboard/${filter}` : '/dashboard'
+            const response = await api.get(url,{headers: {user: user}})
+            setEvents(response.data.events)
+            
+        } catch (error) {
+            history.push('/login') 
+        }
     }
 
     const filterHandler = (query) => {
@@ -30,15 +35,20 @@ export default function Dashboard({history}) {
     }
 
     const myEventHandler = async () => {
-        setRSelected('myevents')
-        const response = await api.get(`/user/events/${user_id}`)
-        setEvents(response.data)
+        try {
+            setRSelected('myevents')
+            const response = await api.get(`/user/events/${user}`, {headers: {user: user}})
+            setEvents(response.data.events)
+            
+        } catch (error) {
+            history.push('/login') 
+        }
 
     }
 
     const deleteEvent = async (id) => {
         try {
-            await api.delete(`/event/${id}`)
+            await api.delete(`/event/${id}`,{headers: {user: user}})
             setSuccessMessage(true)
                 setTimeout(() => {
                     setSuccessMessage(false)
