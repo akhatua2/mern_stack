@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 
 module.exports = {
-    async getEventById(req, res) {
+    getEventById(req, res) {
         jwt.verify(req.token, 'secret', async(err, authData) => {
             if(err) {
                 res.sendStatus(401);

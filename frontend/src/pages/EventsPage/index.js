@@ -111,7 +111,6 @@ export default function EventsPage({history}) {
                                 <DropdownItem onClick={() => sportsEventHandler('Running')}>Running</DropdownItem>
                                 <DropdownItem onClick={() => sportsEventHandler('Swimming')}> Swimming</DropdownItem>
                                 <DropdownItem onClick={() => sportsEventHandler('Cycling')}>Cycling</DropdownItem>
-                                <DropdownItem onClick={() => sportsEventHandler('Swimming')}>Swimming</DropdownItem>
                                 <DropdownItem onClick={() => sportsEventHandler('Hiking')}>Hiking</DropdownItem>
                             </DropdownMenu>
                     </ButtonDropdown>

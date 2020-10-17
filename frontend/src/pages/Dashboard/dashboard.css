@@ -61,3 +61,7 @@ ul.events-list header div{
     flex-direction: row;
 
 }
+
+div .log-out {
+    position: right;
+}

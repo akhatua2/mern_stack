@@ -4,26 +4,17 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const routes = require('./routes')
 const path = require("path");
+const http = require('http')
+const socketio = require('socket.io');
+
 
 const PORT = process.env.PORT || 8000;
-
-
-
-// Add JWT Token
-
-//Return token when login
-
-// Send token on request
-
-// Add function to router
-
-//Modify response to decode token
-
-
+const server = http.Server(app)
+const io = socketio(server);
 
 
 if(process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
+	require('dotenv').config()
 }
 
 app.use(cors())
@@ -39,10 +30,28 @@ try {
 	console.log('error')
 }
 
+// not the ideal solution
+
+const connectUsers = {}
+
+io.on('connection', socket => {
+	const { user } = socket.handshake.query
+	console.log(connectUsers)
+	connectUsers[user] = socket.id
+	console.log(connectUsers)
+
+})
+
+//app.use()
+app.use((req, res, next) => {
+	req.io = io
+	req.connectUsers = connectUsers
+	return next()
+})
 
 app.use("/files", express.static(path.resolve(__dirname, "..", "files")))
 app.use(routes);
 
-app.listen(PORT, ()=>{
-    console.log(`Listening on ${PORT}`)
+server.listen(PORT, ()=>{
+	console.log(`Listening on ${PORT}`)
 })

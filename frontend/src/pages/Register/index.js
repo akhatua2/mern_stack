@@ -19,9 +19,8 @@ export default function Register({history}) {
         try {
             if(email !== "" && password !== "" && firstName !== "" && lastName !== "") {
                 const response = await api.post('/user/register', {email, password, firstName, lastName})
-                const user = response.data.user || false;
-                const user_id = response.data.user_id || false;
-                if(user && user_id) {
+                const user_id = response.data._id || false;
+                if(user_id) {
                     history.push('/login')
                 } else {
                     const {message} = response.data
